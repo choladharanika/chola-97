@@ -1,0 +1,43 @@
+<template>
+    <template if:true={iconName}>
+        <div class="slds-col">
+            <lightning-icon size="small" icon-name={iconName} alternative-text="icon" title=""></lightning-icon>
+            <lightning-button class="slds-p-left_small" variant="base" label={titleName} title="View All Action"
+                onclick={viewRelatedList}>
+            </lightning-button>
+        </div>
+        <template if:true={listRecords}>
+            <template for:each={listRecords} for:item="items">
+                <lightning-button class="slds-p-right_medium" variant="base" label={labelName} title="View"
+                    key={items.Id} value={items.Id} onclick={viewRecord}></lightning-button>
+                <lightning-button variant="base" label={deleteLabel} title="Delete" key={items.Id} value={items.Id}
+                    onclick={deleteSelectedRecord}></lightning-button>
+                <lightning-record-view-form record-id={items.Id} key={items.Id} object-api-name={sobjectName}>
+                    <div class="slds-grid">
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning-output-field field-name={field1}> </lightning-output-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning-output-field field-name={field2}> </lightning-output-field>
+                        </div>
+                    </div>
+                    <div class="slds-grid">
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning-output-field field-name={field3}> </lightning-output-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning-output-field field-name={field4}> </lightning-output-field>
+                        </div>
+                    </div>
+                </lightning-record-view-form>
+            </template>
+        </template>
+        <div slot="footer" class="slds-border">
+            <div if:true={listRecords}>
+                <lightning-button variant="base" label="View All" title="View All Action" onclick={viewRelatedList}
+                    class="slds-align_absolute-center slds-border_top">
+                </lightning-button>
+            </div>
+        </div>
+    </template>
+</template>
